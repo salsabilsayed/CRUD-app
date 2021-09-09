@@ -18,24 +18,29 @@ if(localStorage.getItem('productsList') != null){
 }
 
 function addProduct(){
-    if(addBtn.innerHTML == 'Update'){
-        addAfterUpdate(currentIndex);
-        addBtn.innerHTML = 'Add Product';
-    }
-    else{
-        const product = {
-            name: productNameInput.value,
-            price: productPriceInput.value,
-            category: productCategoryInput.value
+    if(productNameInput.value.length != 0 &&
+        productPriceInput.value.length != 0 &&
+        productCategoryInput.value.length != 0){
+            if(addBtn.innerHTML == 'Update'){
+                addAfterUpdate(currentIndex);
+                addBtn.innerHTML = 'Add Product';
+            }
+            else{
+                const product = {
+                    name: productNameInput.value,
+                    price: productPriceInput.value,
+                    category: productCategoryInput.value
+                }
+            
+                productsList.push(product);
+                localStorage.setItem('productsList',JSON.stringify(productsList));
+                console.log(productsList);
+            
+                displayProducts();
+                clearInput();
+            }
         }
     
-        productsList.push(product);
-        localStorage.setItem('productsList',JSON.stringify(productsList));
-        console.log(productsList);
-    
-        displayProducts();
-        clearInput();
-    }
     
 }
 
